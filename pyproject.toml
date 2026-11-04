@@ -6,12 +6,17 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
+# Versões fixadas para garantir build reprodutível.
+# Sem o pin, a CI instala sempre a release mais recente de cada ferramenta:
+# o ruff 0.16.0 ampliou o conjunto de regras padrão (I001, B009, B136, B161,
+# RUF013, E790) e passou a reprovar código que não mudou uma linha desde a
+# baseline v1.0.0. Toda atualização de ferramenta deve ser deliberada, via PR.
 dev = [
-    "pytest",
-    "pytest-cov",
-    "coverage",
-    "ruff",
-    "mypy"
+    "pytest==9.2.0",
+    "pytest-cov==7.1.0",
+    "coverage==7.17.1",
+    "ruff==0.15.22",
+    "mypy==2.4.1"
 ]
 
 [tool.pytest.ini_options]
